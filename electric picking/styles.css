@@ -1,0 +1,313 @@
+/* Yleiset tyylit */
+body {
+    margin: 0; /* Poistaa oletusmarginaalit kehon ympäriltä */
+    font-family: Arial, sans-serif; /* Määrittää fonttiperheeksi Arialin tai sans-serif vaihtoehdon */
+    background: #f4f4f4; /* Asettaa kehon taustavärin vaaleanharmaaksi */
+    color: #333; /* Määrittää tekstin väriksi tummanharmaan */
+    transition: background 0.3s, color 0.3s; /* Lisää siirtymän taustan ja tekstin värin muutoksiin */
+}
+
+body.dark-theme {
+    background: #222; /* Asettaa kehon taustavärin tummaksi */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan */
+}
+
+/* Header-tyylit */
+header {
+    background: #333; /* Asettaa headerin taustavärin tummanharmaaksi */
+    color: #fff; /* Määrittää headerin tekstin väriksi valkoisen */
+    display: flex; /* Käyttää flexbox-asettelua headerin sisällä */
+    align-items: center; /* Kohdistaa flex-elementit pystysuunnassa keskelle */
+    padding: 0.5rem; /* Lisää sisäistä tyhjää headerin ympärille */
+    position: relative; /* Asettaa headerin suhteelliseen asemaan */
+}
+
+header h1 {
+    flex: 1; /* Antaa h1-elementille joustavan tilan täyttääkseen käytettävissä olevan tilan */
+    text-align: center; /* Keskittää otsikon tekstin */
+    margin: 0; /* Poistaa oletusmarginaalit otsikon ympäriltä */
+    font-weight: normal; /* Asettaa fontin paksuuden normaaliksi */
+    letter-spacing: 1px; /* Lisää kirjainten väliin 1 pikselin etäisyyden */
+}
+
+/* Headerin vasen ja oikea osa */
+.left-header, .right-header {
+    width: 10%; /* Asettaa leveysprosentin 10% */
+    display: flex; /* Käyttää flexbox-asettelua */
+    justify-content: center; /* Keskittää sisältö vaakasuunnassa */
+}
+
+/* Yleiset header-painikkeet */
+.header-btn {
+    background: #555; /* Asettaa painikkeen taustavärin tummaharmaaksi */
+    border: none; /* Poistaa painikkeen reunuksen */
+    color: #fff; /* Määrittää tekstin väriksi valkoisen */
+    padding: 0.5rem; /* Lisää sisäistä tyhjää painikkeen ympärille */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    border-radius: 4px; /* Pyöristää painikkeen kulmat 4 pikselillä */
+}
+
+.header-btn:hover {
+    background: #777; /* Muuttaa painikkeen taustavärin vaaleanharmaaksi hover-tilassa */
+}
+
+/* Suuremmat painikkeet, kuten kirjautumispainike etusivulla */
+.big-button {
+    margin-top: 2rem; /* Lisää yläreunaan 2 rem marginaalia */
+    font-size: 1.1rem; /* Asettaa fonttikooksi 1.1 rem */
+    padding: 0.7rem 1.5rem; /* Lisää sisäistä tyhjää pystysuunnassa 0.7 rem ja vaakasuunnassa 1.5 rem */
+    display: block; /* Näyttää painikkeen blokkina */
+    margin-left: auto; /* Asettaa vasemman marginaalin automaattiseksi */
+    margin-right: auto; /* Asettaa oikean marginaalin automaattiseksi, mikä keskittää painikkeen */
+    background-color: #5cb85c; /* Asettaa taustavärin vihreäksi */
+    color: #fff; /* Määrittää tekstin väriksi valkoisen */
+    border: none; /* Poistaa reunuksen */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    transition: background 0.3s; /* Lisää siirtymän taustan värin muutoksiin */
+}
+
+.big-button:hover {
+    background-color: #4cae4c; /* Muuttaa taustavärin hieman tummemmaksi hover-tilassa */
+}
+
+/* Navigaatiopalkin tyylit */
+nav {
+    background: #eee; /* Asettaa navigaatiopalkin taustavärin vaaleanharmaaksi */
+    display: flex; /* Käyttää flexbox-asettelua */
+    justify-content: center; /* Keskittää navigaatiopainikkeet vaakasuunnassa */
+    gap: 1rem; /* Lisää 1 rem väliä navigaatiopainikkeiden välille */
+    padding: 1rem; /* Lisää sisäistä tyhjää navigaatiopalkin ympärille */
+}
+
+.nav-btn {
+    background: #333; /* Asettaa navigaatiopainikkeen taustavärin tummanharmaaksi */
+    color: #fff; /* Määrittää tekstin väriksi valkoisen */
+    border: none; /* Poistaa reunuksen */
+    padding: 0.5rem 1rem; /* Lisää sisäistä tyhjää pystysuunnassa 0.5 rem ja vaakasuunnassa 1 rem */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    font-size: 0.95rem; /* Asettaa fonttikooksi 0.95 rem */
+}
+
+.nav-btn:hover {
+    background: #555; /* Muuttaa navigaatiopainikkeen taustavärin vaaleanharmaaksi hover-tilassa */
+}
+
+/* Yleiset näkymän tyylit */
+.view {
+    padding: 1rem; /* Lisää sisäistä tyhjää näkymän ympärille */
+    max-width: 1000px; /* Asettaa maksimileveydeksi 1000 pikseliä */
+    margin: 1rem auto; /* Lisää marginaalia ylä- ja alapuolelle sekä keskittää näkymän vaakasuunnassa */
+    background: #fff; /* Asettaa näkymän taustavärin valkoiseksi */
+    border-radius: 8px; /* Pyöristää kulmat 8 pikselillä */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Lisää varjon näkymän ympärille */
+    transition: background 0.3s, color 0.3s; /* Lisää siirtymän taustan ja tekstin värin muutoksiin */
+}
+
+body.dark-theme .view {
+    background: #333; /* Asettaa näkymän taustavärin tummanharmaaksi tummassa teemassa */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan tummassa teemassa */
+}
+
+/* Piilotetut elementit */
+.hidden {
+    display: none !important; /* Piilottaa elementit kokonaan, ei jätä tilaa */
+}
+
+/* Modal-tyylit */
+.modal {
+    position: fixed; /* Asettaa modalin kiinteään sijaintiin ikkunan suhteessa */
+    top: 0; /* Asettaa modalin yläreunaan */
+    left: 0; /* Asettaa modalin vasempaan reunaan */
+    width: 100%; /* Asettaa modalin leveydeksi 100% ikkunasta */
+    height: 100%; /* Asettaa modalin korkeudeksi 100% ikkunasta */
+    background: rgba(0,0,0,0.5); /* Lisää puoliläpinäkyvän mustan taustan */
+    display: flex; /* Käyttää flexbox-asettelua */
+    justify-content: center; /* Keskittää modalin vaakasuunnassa */
+    align-items: center; /* Keskittää modalin pystysuunnassa */
+}
+
+.modal-content {
+    background: #fff; /* Asettaa modalin sisällön taustavärin valkoiseksi */
+    padding: 1.5rem; /* Lisää sisäistä tyhjää modalin sisällön ympärille */
+    max-width: 300px; /* Asettaa maksimileveydeksi 300 pikseliä */
+    width: 90%; /* Asettaa leveydeksi 90% modalin kokonaisleveydeksi */
+    border-radius: 8px; /* Pyöristää kulmat 8 pikselillä */
+    text-align: center; /* Keskittää tekstin */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Lisää varjon modalin ympärille */
+    transition: background 0.3s, color 0.3s; /* Lisää siirtymän taustan ja tekstin värin muutoksiin */
+}
+
+body.dark-theme .modal-content {
+    background: #444; /* Asettaa modalin sisällön taustavärin tummaksi tummassa teemassa */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan tummassa teemassa */
+}
+
+/* Yleiset painikkeet */
+.close-btn, .delete-btn, .send-order-btn {
+    font-size: 0.9rem; /* Asettaa fonttikooksi 0.9 rem kaikille näille painikkeille */
+}
+
+.close-btn {
+    background: #ccc; /* Asettaa sulkemispainikkeen taustavärin vaaleanharmaaksi */
+    border: none; /* Poistaa reunuksen */
+    padding: 0.5rem 1rem; /* Lisää sisäistä tyhjää pystysuunnassa 0.5 rem ja vaakasuunnassa 1 rem */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    margin-top: 1rem; /* Lisää yläreunaan 1 rem marginaalia */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    transition: background 0.3s; /* Lisää siirtymän taustan värin muutoksiin */
+}
+
+.close-btn:hover {
+    background: #aaa; /* Muuttaa taustavärin tummemmaksi hover-tilassa */
+}
+
+.delete-btn {
+    background: #d9534f; /* Asettaa poistopainikkeen taustavärin punaiseksi */
+    color: #fff; /* Määrittää tekstin väriksi valkoisen */
+    border: none; /* Poistaa reunuksen */
+    padding: 0.3rem 0.5rem; /* Lisää sisäistä tyhjää pystysuunnassa 0.3 rem ja vaakasuunnassa 0.5 rem */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    margin: 0.5rem; /* Lisää 0.5 rem marginaalia kaikkialle */
+    transition: background 0.3s; /* Lisää siirtymän taustan värin muutoksiin */
+}
+
+.delete-btn:hover {
+    background: #c9302c; /* Muuttaa taustavärin tummemmaksi hover-tilassa */
+}
+
+.error-msg {
+    color: red; /* Määrittää virheilmoitusten tekstin väriksi punaisen */
+    margin-top: 0.5rem; /* Lisää yläreunaan 0.5 rem marginaalia */
+}
+
+/* Tilaus- ja historiakohteiden tyylit */
+.order-item, .history-item {
+    border: 1px solid #ccc; /* Lisää 1 pikselin vaaleanharmaan reunuksen */
+    border-radius: 6px; /* Pyöristää kulmat 6 pikselillä */
+    padding: 1rem; /* Lisää sisäistä tyhjää kohteen ympärille */
+    margin-bottom: 1rem; /* Lisää alareunaan 1 rem marginaalia */
+    background: #fafafa; /* Asettaa taustavärin hyvin vaaleanharmaaksi */
+    transition: background 0.3s, color 0.3s; /* Lisää siirtymän taustan ja tekstin värin muutoksiin */
+}
+
+body.dark-theme .order-item, 
+body.dark-theme .history-item {
+    background: #555; /* Asettaa taustavärin tummanharmaaksi tummassa teemassa */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan tummassa teemassa */
+}
+
+.order-item h3, .history-item h3 {
+    margin-top: 0; /* Poistaa yläreunan marginaalin otsikosta */
+    font-weight: normal; /* Asettaa fontin paksuuden normaaliksi */
+}
+
+/* Hakukentän tyylit */
+.search-container {
+    margin: 1rem 0; /* Lisää ylä- ja alareunaan 1 rem marginaalia */
+}
+
+.search-container input {
+    width: 100%; /* Asettaa hakukentän leveydeksi 100% sen sisältävän kontin leveydestä */
+    padding: 0.5rem; /* Lisää sisäistä tyhjää hakukentän ympärille */
+    font-size: 1rem; /* Asettaa fonttikooksi 1 rem */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    border: 1px solid #ccc; /* Lisää 1 pikselin vaaleanharmaan reunuksen */
+}
+
+/* Tuotekorttien tyylit */
+.product-card {
+    border: 1px solid #ccc; /* Lisää 1 pikselin vaaleanharmaan reunuksen */
+    border-radius: 6px; /* Pyöristää kulmat 6 pikselillä */
+    background: #f9f9f9; /* Asettaa taustavärin hyvin vaaleanharmaaksi */
+    padding: 1rem; /* Lisää sisäistä tyhjää tuotteen ympärille */
+    margin-bottom: 0.5rem; /* Lisää alareunaan 0.5 rem marginaalia */
+    transition: box-shadow 0.3s, background 0.3s; /* Lisää siirtymän varjon ja taustan värin muutoksiin */
+}
+
+body.dark-theme .product-card {
+    background: #666; /* Asettaa taustavärin tummaksi tummassa teemassa */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan tummassa teemassa */
+}
+
+.product-card:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Lisää kevyen varjon hover-tilassa */
+}
+
+/* Valitun tilauksen tiedot */
+#selected-order-bar {
+    border: 1px solid #ccc; /* Lisää 1 pikselin vaaleanharmaan reunuksen */
+    border-radius: 8px; /* Pyöristää kulmat 8 pikselillä */
+    padding: 1rem; /* Lisää sisäistä tyhjää valitun tilauksen ympärille */
+    margin-bottom: 1rem; /* Lisää alareunaan 1 rem marginaalia */
+    background: #fefefe; /* Asettaa taustavärin lähes valkoiseksi */
+    box-shadow: 0 0 5px rgba(0,0,0,0.05); /* Lisää hyvin vaalean varjon */
+    transition: background 0.3s, color 0.3s; /* Lisää siirtymän taustan ja tekstin värin muutoksiin */
+}
+
+body.dark-theme #selected-order-bar {
+    background: #555; /* Asettaa taustavärin tummaksi tummassa teemassa */
+    color: #ddd; /* Määrittää tekstin väriksi vaaleanharmaan tummassa teemassa */
+}
+
+#selected-order-bar h3 {
+    margin-top: 0; /* Poistaa yläreunan marginaalin otsikosta */
+    font-weight: normal; /* Asettaa fontin paksuuden normaaliksi */
+    font-size: 1.1rem; /* Asettaa fonttikooksi 1.1 rem */
+}
+
+/* Tuotteiden toiminnot tilauksessa */
+.product-actions {
+    margin-top: 1rem; /* Lisää yläreunaan 1 rem marginaalia */
+}
+
+/* Lähetä tilaus -painikkeen tyylit */
+.send-order-btn {
+    background: #5cb85c; /* Asettaa taustavärin vihreäksi */
+    color: #fff; /* Määrittää tekstin väriksi valkoisen */
+    border: none; /* Poistaa reunuksen */
+    padding: 0.5rem 1rem; /* Lisää sisäistä tyhjää pystysuunnassa 0.5 rem ja vaakasuunnassa 1 rem */
+    border-radius: 4px; /* Pyöristää kulmat 4 pikselillä */
+    cursor: pointer; /* Muuttaa hiiren osoittimen kädestä kädeksi hover-tilassa */
+    margin-right: 0.5rem; /* Lisää oikealle 0.5 rem marginaalia */
+    transition: background 0.3s; /* Lisää siirtymän taustan värin muutoksiin */
+}
+
+.send-order-btn:hover {
+    background: #4cae4c; /* Muuttaa taustavärin hieman tummemmaksi hover-tilassa */
+}
+
+/* Tumman teeman painikkeiden tyylit */
+body.dark-theme .header-btn,
+body.dark-theme .nav-btn,
+body.dark-theme .big-button,
+body.dark-theme .send-order-btn {
+    background: #777; /* Asettaa taustavärin vaaleanharmaaksi tummassa teemassa */
+}
+
+body.dark-theme .big-button:hover,
+body.dark-theme .send-order-btn:hover,
+body.dark-theme .header-btn:hover,
+body.dark-theme .nav-btn:hover {
+    background: #999; /* Muuttaa taustavärin vaaleammaksi hover-tilassa tummassa teemassa */
+}
+
+/* Etusivun sisällön taustalaatikon tyylit */
+.welcome-content {
+    background: rgba(0, 0, 0, 0.6); /* Lisää puoliläpinäkyvän mustan taustan */
+    padding: 2rem; /* Lisää sisäistä tyhjää contentin ympärille */
+    border-radius: 8px; /* Pyöristää kulmat 8 pikselillä */
+    text-align: center; /* Keskittää tekstin */
+}
+
+.welcome-content h2 {
+    color: #fff; /* Määrittää otsikon tekstin väriksi valkoisen */
+    margin-bottom: 1rem; /* Lisää alareunaan 1 rem marginaalia */
+}
+
+.welcome-content p {
+    color: #fff; /* Määrittää kappaleen tekstin väriksi valkoisen */
+    margin-bottom: 2rem; /* Lisää alareunaan 2 rem marginaalia */
+}

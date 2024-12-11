@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <!-- Määrittää HTML-dokumentin kielen suomalaiseksi -->
+  <meta charset="UTF-8">
+  <!-- Asettaa näkymän leveydeksi laitteen leveyden ja skaalauksen asetukseksi 1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Määrittää sivun otsikon, joka näkyy selaimen välilehdellä -->
+  <title>Varastonhallinta</title>
+  <!-- Linkittää ulkoisen CSS-tiedoston, joka sisältää tyylitiedot -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-theme"> <!-- Light theme oletuksena -->
+  <!-- Sivun yläosa, joka sisältää navigaation ja toiminnot kuten teeman vaihto ja uloskirjautuminen -->
+  <header>
+    <!-- Vasemmalla puolella oleva osa, jossa on teeman vaihtopainike -->
+    <div class="left-header">
+      <!-- Painike teeman vaihtamiseen (valon ja tumman teeman välillä) -->
+      <button id="theme-toggle-btn" class="header-btn">Vaihda teema</button>
+    </div>
+    <!-- Sivun pääotsikko keskellä -->
+    <h1>Varastonhallinta</h1>
+    <!-- Oikealla puolella oleva osa, jossa on uloskirjautumispainike, aluksi piilotettuna -->
+    <div class="right-header">
+      <button id="logout-btn" class="header-btn hidden">Kirjaudu ulos</button>
+    </div>
+  </header>
+  
+  <!-- Navigaatio, joka sisältää eri näkymien painikkeet. Aluksi piilotettu -->
+  <nav id="main-nav" class="hidden">
+    <!-- Painike Asiakas Tilauksiin siirtymiseen -->
+    <button id="orders-view-btn" class="nav-btn">Asiakas Tilaukset</button>
+    <!-- Painike Tuotteiden hallintaan siirtymiseen -->
+    <button id="products-view-btn" class="nav-btn">Hyväksytyt Tilaukset</button>
+    <!-- Painike Tilaushistorian tarkasteluun siirtymiseen -->
+    <button id="history-view-btn" class="nav-btn">Tilaushistoria</button>
+    <!-- Painike Hylättyjen tilausten tarkasteluun siirtymiseen -->
+    <button id="rejected-view-btn" class="nav-btn">Hylätyt Tilaukset</button>
+  </nav>
+
+  <main>
+    <!-- Etusivu / Kirjautumissivu -->
+    <section id="welcome-section" class="view">
+      <!-- Keskitetty sisältö, jossa on tervetuloteksti ja kirjautumispainike -->
+      <div class="welcome-content">
+        <!-- Tervetuloviesti -->
+        <h2>Tervetuloa Varastohallinta Palveluun</h2>
+        <!-- Lyhyt kuvaus palvelun toiminnasta -->
+        <p>Hallinnoi asiakastilauksia, hyväksy, lisää tuotteita ja lähetä tilaukset tehokkaasti.</p>
+        <!-- Kirjautumispainike, joka avaa kirjautumislomakkeen -->
+        <button id="login-btn" class="header-btn big-button">Kirjaudu</button>
+      </div>
+    </section>
+
+    <!-- Kirjautumislomake popup -->
+    <div id="login-modal" class="modal hidden">
+      <!-- Popup-ikkunan sisältö -->
+      <div class="modal-content">
+        <!-- Lomakkeen otsikko -->
+        <h2>Kirjaudu sisään</h2>
+        <!-- Kirjautumislomake -->
+        <form id="login-form">
+          <!-- Käyttäjänimen syöttökenttä -->
+          <label>
+            Käyttäjänimi:
+            <input type="text" name="username" required>
+          </label>
+          <!-- Salasanan syöttökenttä -->
+          <label>
+            Salasana:
+            <input type="password" name="password" required>
+          </label>
+          <!-- Lomakkeen lähetyspainike -->
+          <button type="submit">Kirjaudu</button>
+        </form>
+        <!-- Virheilmoitus, jos kirjautuminen epäonnistuu -->
+        <div id="login-message" class="error-msg"></div>
+        <!-- Lomakkeen sulkemispainike -->
+        <button id="close-login" class="close-btn">Sulje</button>
+      </div>
+    </div>
+
+    <!-- Asiakas Tilaukset (pending) -->
+    <section id="orders-section" class="view hidden">
+      <!-- Tilausosion otsikko, joka kertoo tilaukset odottavat hyväksyntää -->
+      <h2>Asiakas Tilaukset (Odottaa hyväksyntää)</h2>
+      <!-- Lista pending-tilauksista -->
+      <div id="orders-list"></div>
+    </section>
+
+    <!-- Tuotteet (approved ja käsittely) -->
+    <section id="products-section" class="view hidden">
+      <!-- Valitun tilauksen yksityiskohdat ja toiminnot -->
+      <div id="selected-order-bar" class="hidden">
+        <!-- Valitun tilauksen otsikko, kuten tilausnumero ja asiakas -->
+        <h3 id="selected-order-title"></h3>
+        <!-- Laskutusosoitteen näyttäminen -->
+        <p id="order-invaddr"></p>
+        <!-- Lisätiedot tilauksesta, kuten asiakas ID, toimituspäivä ja kommentit -->
+        <div id="extra-order-info"></div>
+
+        <!-- Asiakkaan toivomien tuotteiden lista -->
+        <h4>Asiakkaan toivomat tuotteet</h4>
+        <div id="wanted-products-list"></div>
+
+        <!-- Valittujen tuotteiden lista tilaukseen -->
+        <h4>Valitut tuotteet tilaukseen</h4>
+        <div id="selected-products-list"></div>
+        
+        <!-- Tuotteiden hallinnan painikkeet ja virheilmoitukset -->
+        <div class="product-actions">
+          <!-- Virheilmoitus, jos jotain menee vikaan -->
+          <div id="product-error" class="error-msg hidden"></div>
+          <!-- Lähetä tilaus -painike -->
+          <button id="send-order-btn" class="send-order-btn">Lähetä tilaus</button>
+          <!-- Peruuta Tilaus -painike -->
+          <button id="cancel-order-btn" class="delete-btn">Peruuta Tilaus</button>
+        </div>
+      </div>
+
+      <!-- Hyväksyttyjen tilausten lista -->
+      <h3>Hyväksytyt tilaukset</h3>
+      <div id="approved-orders-container"></div>
+
+      <!-- Kaikkien tuotteiden hakukenttä ja lista -->
+      <h2>Kaikki tuotteet</h2>
+      <div class="search-container">
+        <!-- Tuotteiden hakukenttä, jossa käyttäjä voi hakea tuotteita nimellä tai koodilla -->
+        <input type="text" id="global-product-search" placeholder="Hae tuotteita...">
+      </div>
+      <!-- Lista kaikista tuotteista, joista käyttäjä voi valita tilaukseen -->
+      <div id="all-products-list"></div>
+    </section>
+
+    <!-- Tilaushistoria (shipped) -->
+    <section id="history-section" class="view hidden">
+      <!-- Tilaushistorian otsikko -->
+      <h2>Tilaushistoria</h2>
+      <!-- Päivämäärähaku tilauksille -->
+      <div class="search-container">
+        <!-- Aloituspäivämäärän valinta -->
+        <label>Alkaen: <input type="date" id="history-start-date"></label>
+        <!-- Lopetuspäivämäärän valinta -->
+        <label>Asti: <input type="date" id="history-end-date"></label>
+        <!-- Hakupainike, joka suorittaa haun valitulla aikavälillä -->
+        <button id="history-search-btn">Hae</button>
+      </div>
+      <!-- Lista haetuista tilauksista -->
+      <div id="history-list"></div>
+    </section>
+    
+    <!-- Hylätyt Tilaukset (rejected) -->
+    <section id="rejected-section" class="view hidden">
+      <!-- Hylättyjen tilausten otsikko -->
+      <h2>Hylätyt Tilaukset</h2>
+      <!-- Päivämäärähaku hylätyille tilauksille -->
+      <div class="search-container">
+        <!-- Aloituspäivämäärän valinta hylätyille tilauksille -->
+        <label>Alkaen: <input type="date" id="rejected-start-date"></label>
+        <!-- Lopetuspäivämäärän valinta hylätyille tilauksille -->
+        <label>Asti: <input type="date" id="rejected-end-date"></label>
+        <!-- Hakupainike, joka suorittaa haun valitulla aikavälillä hylätyille tilauksille -->
+        <button id="rejected-search-btn">Hae</button>
+      </div>
+      <!-- Lista hylätyistä tilauksista -->
+      <div id="rejected-list"></div>
+    </section>
+
+    <!-- Tilaus lähetetty -ilmoitus -->
+    <div id="success-modal" class="modal hidden">
+      <!-- Ilmoitusikkunan sisältö -->
+      <div class="modal-content">
+        <!-- Ilmoituksen teksti, joka vahvistaa tilauksen lähettämisen -->
+        <h2>Tilaus lähetetty onnistuneesti!</h2>
+        <!-- OK-painike, joka sulkee ilmoitusikkunan -->
+        <button id="close-success" class="close-btn">OK</button>
+      </div>
+    </div>
+
+    <!-- Poiston varoitus -->
+    <div id="delete-confirm-modal" class="modal hidden">
+      <!-- Varoitusikkunan sisältö -->
+      <div class="modal-content">
+        <!-- Varoituksen teksti, joka kysyy käyttäjältä varmistusta tilauksen poistamiseen -->
+        <h2>Oletko varma että haluat poistaa asiakkaan tilauksen pysyvästi?</h2>
+        <!-- Poista pysyvästi -painike, joka vahvistaa poistamisen -->
+        <button id="confirm-delete-btn" class="delete-btn">Poista pysyvästi</button>
+        <!-- Peruuta -painike, joka sulkee varoitusikkunan -->
+        <button id="cancel-delete-btn" class="close-btn">Peruuta</button>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Linkittää ulkoisen JavaScript-tiedoston, joka sisältää toiminnallisuuden -->
+  <script src="sivu.js"></script>
+</body>
+</html>
+
